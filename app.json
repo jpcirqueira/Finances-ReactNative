@@ -1,0 +1,12 @@
+{
+  "name": "Finances-ReactNative",
+  "displayName": "Finances-ReactNative",
+  "expo": {
+    "name": "Finances-ReactNative",
+    "slug": "Finances-ReactNative",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
