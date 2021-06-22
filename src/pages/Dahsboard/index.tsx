@@ -13,9 +13,47 @@ import {
   HighlightCards,
   Transactions,
   Title,
+  TransactionsList
 } from './styles';
 import HighlightCard from '../../components/HighlightCard';
-import TransactionCard from '../../components/TransactionCard';
+import TransactionCard, { TransactionCardProps } from '../../components/TransactionCard';
+
+export interface DataListProps extends TransactionCardProps {
+  id: string
+}
+const data: DataListProps[] = [{
+  id: '1',
+  type: 'positive',
+  title:'site',
+  amount: 'R$ 230.382,21',
+  category:{
+    name: 'vendas',
+    icon: 'dollar-sign',
+  },
+  date:'01/06/2021',
+},
+{
+  id: '2',
+  type: 'negative',
+  title:'site',
+  amount: 'R$ 230.382,21',
+  category:{
+    name: 'vendas',
+    icon: 'dollar-sign',
+  },
+  date:'01/06/2021',
+}, 
+{
+  id: '3',
+  type: 'negative',
+  title:'site',
+  amount: 'R$ 230.382,21',
+  category:{
+    name: 'vendas',
+    icon: 'dollar-sign',
+  },
+  date:'01/06/2021',
+}];
 
 const Dashboard: React.FC = () => {
   return (
@@ -56,7 +94,13 @@ const Dashboard: React.FC = () => {
       </HighlightCards>
       <Transactions>
         <Title>Listagem</Title>
-        <TransactionCard />
+
+        <TransactionsList 
+          data={data}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => <TransactionCard data={item}/>}
+        />
+        
       </Transactions>
     </Container>
   );

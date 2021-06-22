@@ -11,17 +11,38 @@ import {
   Date,
 } from './styles';
 
-const TransactionCard: React.FC = () => {
+interface Category {
+  name: string;
+  icon: string;
+}
+
+export interface TransactionCardProps{
+    type: "positive" | "negative";
+    title: string;
+    amount: string;
+    category: Category;
+    date: string;
+}
+
+interface Props {
+  data: TransactionCardProps
+}
+const TransactionCard: React.FC<Props> = ({ data }) => {
   return (
     <Container>
-      <Title>Teste</Title>
-      <Amount>R$ 7.281,38</Amount>
+      <Title>{data.title}</Title>
+      <Amount type={data.type}>
+        {
+          data.type === 'negative' && '- '
+        }
+        {data.amount}
+      </Amount>
       <Footer>
         <Category>
-          <Icon name="dollar-sign"/>
-          <CategoryName>Vendas</CategoryName>
+          <Icon name={data.category.icon}/>
+          <CategoryName>{data.category.name}</CategoryName>
         </Category>
-        <Date>01/06/2021</Date>
+        <Date>{data.date}</Date>
       </Footer>
     </Container>
   );
