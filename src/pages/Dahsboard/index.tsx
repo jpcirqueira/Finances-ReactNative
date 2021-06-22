@@ -11,8 +11,11 @@ import {
   UserWrapper,
   Icon,
   HighlightCards,
+  Transactions,
+  Title,
 } from './styles';
 import HighlightCard from '../../components/HighlightCard';
+import TransactionCard from '../../components/TransactionCard';
 
 const Dashboard: React.FC = () => {
   return (
@@ -51,7 +54,10 @@ const Dashboard: React.FC = () => {
         type="total"
         />
       </HighlightCards>
-      
+      <Transactions>
+        <Title>Listagem</Title>
+        <TransactionCard />
+      </Transactions>
     </Container>
   );
 }
