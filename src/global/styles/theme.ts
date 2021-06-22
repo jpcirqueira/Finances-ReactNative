@@ -8,6 +8,7 @@ export default {
     sucess: '#12A454',
     sucess_light: 'rgba(232, 63, 91, 0.5)',
 
+    attention: '#DF2800',
     shape: '#FFFFFF',
     title: '#363D5F',
     text: '#969CB2',
