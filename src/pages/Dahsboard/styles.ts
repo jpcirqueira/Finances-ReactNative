@@ -1,7 +1,6 @@
 import styled from "styled-components/native";
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
-import { Feather  } from '@expo/vector-icons';
-
+import { Feather } from '@expo/vector-icons';
 export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.background}
@@ -11,14 +10,16 @@ export const Header = styled.View`
   width: 100%;
   height: ${RFPercentage(42)}px;
   background-color: ${({ theme }) => theme.colors.primary};
-
+  
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: row;
 `;
 
 export const UserInfo = styled.View`
   align-items: center;
   flex-direction: row;
+  margin-top: ${RFPercentage(5)}px;
 `;
 
 export const Photo = styled.Image`
@@ -54,4 +55,14 @@ export const UserWrapper = styled.View`
 export const Icon = styled(Feather)`
   font-size: ${RFValue(24)}px;
   color: ${({ theme }) => theme.colors.secondary};
+`;
+
+export const HighlightCards = styled.ScrollView.attrs({
+  horizontal: true,
+  showsHorizontalScrollIndicator: false,
+  contentContainerStyle: { paddingHorizontal: 24 }
+})`
+  width: 100%;
+  position: absolute;
+  margin-top: ${RFPercentage(20)}px;
 `;
