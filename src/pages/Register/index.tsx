@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-
+import { Modal } from 'react-native';
 import Input from '../../components/Forms/Input';
 import Button from '../../components/Forms/Button';
 import TransactionTypeButton from '../../components/Forms/TransactionTypeButton';
-import CategorySelect from '../../components/Forms/CategorySelect';
+import CategorySelectButton from '../../components/Forms/CategorySelectButton';
+import CategorySelect from '../../pages/CategorySelect';
 
 import { 
   Container,
@@ -17,11 +18,24 @@ import {
 const Register: React.FC = () => {
 
   const [transactionType, setTransactionType] = useState('');
+  const [categoryModalOpen, setCategoryModalOpen] = useState(false);
+  const [category, setCategory] = useState({
+    key: 'category',
+    name: 'Categoria',
+  });
 
   function handleTransactionsTypeSelect(type: 'up' | 'down'){
     setTransactionType(type);
   }
 
+  function handleCloseSelectCategoryModal(){
+    setCategoryModalOpen(false);
+  }
+
+  function handleOpenSelectCategoryModal(){
+    setCategoryModalOpen(true);
+  }
+  
   return (
     <Container>
       <Header>
@@ -46,11 +60,18 @@ const Register: React.FC = () => {
               isActive={transactionType === 'down'}
             />
           </TransactionType>
-          <CategorySelect title="Categoria"/>
+          <CategorySelectButton title={category.name} onPress={handleOpenSelectCategoryModal}/>
         </Fields>
         <Button title="Enviar"/>
       </Form>
       
+      <Modal visible={categoryModalOpen}>
+        <CategorySelect 
+          category={category}
+          setCategory={setCategory}
+          closeSelectCategory={() => handleCloseSelectCategoryModal()}
+        />
+      </Modal>
     </Container>
   );
 }
