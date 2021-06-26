@@ -4,6 +4,7 @@ import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { Feather } from '@expo/vector-icons';
 
 import { DataListProps } from '.';
+import { BorderlessButton } from "react-native-gesture-handler";
 export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.background}
@@ -53,6 +54,8 @@ export const UserWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+`;
+export const LogoutButton = styled(BorderlessButton)`
 `;
 
 export const Icon = styled(Feather)`
