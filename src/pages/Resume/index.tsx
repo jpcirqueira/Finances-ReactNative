@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState, useCallback} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HistoryCard from '../../components/HistoryCard';
 import { VictoryPie } from 'victory-native';
@@ -20,6 +20,7 @@ import {
   Month,
 } from './styles';
 import { categories } from '../../utils/categories';
+import { useFocusEffect } from '@react-navigation/native';
 
 interface TransactionData{
   type: "positive" | "negative";
@@ -103,9 +104,9 @@ function Resume() {
     }
   }
 
-  useEffect(() => {
+  useFocusEffect(useCallback(()=> {
     loadData();
-  },[selectedDate]);
+  }, [selectedDate]));
 
   return (
     <Container>
