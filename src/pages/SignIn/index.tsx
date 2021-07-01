@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import appleSvg from '../../assets/apple.svg';
 import googleSvg from '../../assets/google.svg';
 import SignInSocialButton from '../../components/SignInSocialButton';
+import { useAuth } from '../../hooks/auth';
 
 import { 
   Container,
@@ -14,6 +15,8 @@ import {
 } from './styles';
 
 function SignIn() {
+  const { user } = useAuth();
+  console.log(user)
   return (
     <Container>
       <Header>
