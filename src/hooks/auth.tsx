@@ -21,6 +21,7 @@ interface User {
 interface IAuthContextData {
   user: User;
   signInWithGoogle(): Promise<void>;
+  signOut(): Promise<void>;
 }
 
 const AuthContext = createContext({} as IAuthContextData);
@@ -54,6 +55,11 @@ function AuthProvider({ children }: AuthProviderProps){
     }
   }
 
+  async function signOut() {
+     setUser({} as User);
+     await AsyncStorage.removeItem('@finances:user');
+  }
+
   useEffect(() => {
     async function loadUserStorageDate() {
       const userStoraged = await AsyncStorage.getItem('@finances:user');
@@ -68,7 +74,7 @@ function AuthProvider({ children }: AuthProviderProps){
   },[])
   return(
     <AuthContext.Provider
-      value={{ user, signInWithGoogle }}
+      value={{ user, signInWithGoogle, signOut }}
     >
       { children }
     </AuthContext.Provider>

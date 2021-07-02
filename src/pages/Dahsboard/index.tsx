@@ -23,6 +23,7 @@ import HighlightCard from '../../components/HighlightCard';
 import TransactionCard, { TransactionCardProps } from '../../components/TransactionCard';
 import theme from '../../global/styles/theme';
 import { LastTransaction } from '../../components/HighlightCard/styles';
+import { useAuth } from '../../hooks/auth';
 
 export interface DataListProps extends TransactionCardProps {
   id: string
@@ -45,7 +46,8 @@ const Dashboard: React.FC = () => {
   const [ isLoading, setIsLoading] = useState(true);
    
   const dataKey = '@finances:transactions';
-  
+  const { signOut } = useAuth();
+
   function getLastTransactionDate(
     collection: DataListProps[],
     type: 'positive' | 'negative'
@@ -157,7 +159,7 @@ const Dashboard: React.FC = () => {
                   <UserName>usuario</UserName>
                 </User>
               </UserInfo>
-              <LogoutButton onPress={()=>{}}>
+              <LogoutButton onPress={signOut}>
                 <Icon name="power"/>
               </LogoutButton>
             </UserWrapper>
