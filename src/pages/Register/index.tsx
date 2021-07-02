@@ -20,6 +20,7 @@ import {
   TransactionType,
 } from './styles';
 import { useNavigation } from '@react-navigation/core';
+import { useAuth } from '../../hooks/auth';
 
 
 interface FormData {
@@ -46,7 +47,8 @@ const Register: React.FC = () => {
   const {control,handleSubmit, reset, formState: { errors }} = useForm({
     resolver: yupResolver(schema)
   })
-  const dataKey = '@finances:transactions';
+  const { user } = useAuth();
+  const dataKey = `@finances:transactions_user:${user.id}`;
   const navigation = useNavigation();
 
   function handleTransactionsTypeSelect(type: 'positive' | 'negative'){

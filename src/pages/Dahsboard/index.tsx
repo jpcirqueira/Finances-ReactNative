@@ -45,8 +45,8 @@ const Dashboard: React.FC = () => {
   const [highlightData, setHighlightData] = useState<HighlightData>({} as HighlightData);
   const [ isLoading, setIsLoading] = useState(true);
    
-  const dataKey = '@finances:transactions';
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
+  const dataKey = `@finances:transactions_user:${user.id}`;
 
   function getLastTransactionDate(
     collection: DataListProps[],
@@ -152,11 +152,11 @@ const Dashboard: React.FC = () => {
             <UserWrapper>
               <UserInfo>
                 <Photo 
-                source={{ uri: 'https://github.com/jpcirqueira.png' }}
+                source={{ uri: user.photo }}
                 />
                 <User>
                   <UserGreeting>Olá, </UserGreeting>
-                  <UserName>usuario</UserName>
+                  <UserName>{user.name}</UserName>
                 </User>
               </UserInfo>
               <LogoutButton onPress={signOut}>
